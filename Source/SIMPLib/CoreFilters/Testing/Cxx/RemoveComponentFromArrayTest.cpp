@@ -50,24 +50,17 @@
 #include "SIMPLib/Testing/SIMPLTestFileLocations.h"
 #include "SIMPLib/Testing/UnitTestSupport.hpp"
 
-size_t numTuples = 5;
-size_t numComps = 4;
 
 class RemoveComponentFromArrayTest
 {
 public:
-  RemoveComponentFromArrayTest()
-  {
-  }
-  virtual ~RemoveComponentFromArrayTest()
-  {
-  }
+  RemoveComponentFromArrayTest() = default;
+  virtual ~RemoveComponentFromArrayTest() = default;
 
-  enum ErrorCodes
-  {
-    NO_ERROR = 0,
-    INT8_ERROR = -4050
-  };
+  static const int k_NoError = 0;
+
+  size_t numTuples = 5;
+  size_t numComps = 4;
 
   // -----------------------------------------------------------------------------
   //
@@ -222,7 +215,7 @@ public:
 
     filter->execute();
     err = filter->getErrorCondition();
-    DREAM3D_REQUIRE_EQUAL(err, NO_ERROR);
+    DREAM3D_REQUIRE_EQUAL(err, k_NoError);
 
     IDataArray::Pointer ReducedArrayPtr = dca->getDataContainer(SIMPL::Defaults::DataContainerName)->getAttributeMatrix(path.getAttributeMatrixName())->getAttributeArray(ReducedArrayArrayName);
     Int8ArrayType::Pointer ReducedArray = std::dynamic_pointer_cast<Int8ArrayType>(ReducedArrayPtr);
@@ -352,13 +345,13 @@ public:
 
     filter->preflight();
     err = filter->getErrorCondition();
-    DREAM3D_REQUIRE_EQUAL(err, NO_ERROR);
+    DREAM3D_REQUIRE_EQUAL(err, k_NoError);
 
     dca = CreateDataContainerArray();
     filter->setDataContainerArray(dca);
     filter->execute();
     err = filter->getErrorCondition();
-    DREAM3D_REQUIRE_EQUAL(err, NO_ERROR);
+    DREAM3D_REQUIRE_EQUAL(err, k_NoError);
 
     {
       IDataArray::Pointer testArrayPtr = dca->getDataContainer(SIMPL::Defaults::DataContainerName)->getAttributeMatrix(path.getAttributeMatrixName())->getAttributeArray(path.getDataArrayName());
@@ -378,14 +371,14 @@ public:
 
     filter->preflight();
     err = filter->getErrorCondition();
-    DREAM3D_REQUIRE_EQUAL(err, NO_ERROR);
+    DREAM3D_REQUIRE_EQUAL(err, k_NoError);
 
     dca = CreateDataContainerArray();
     filter->setDataContainerArray(dca);
 
     filter->execute();
     err = filter->getErrorCondition();
-    DREAM3D_REQUIRE_EQUAL(err, NO_ERROR);
+    DREAM3D_REQUIRE_EQUAL(err, k_NoError);
 
     IDataArray::Pointer testArrayPtr = dca->getDataContainer(SIMPL::Defaults::DataContainerName)->getAttributeMatrix(path.getAttributeMatrixName())->getAttributeArray(path.getDataArrayName());
     typedef DataArray<T> DataArrayType;
