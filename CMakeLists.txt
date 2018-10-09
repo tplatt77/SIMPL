@@ -13,12 +13,12 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS False)
 
-if(${CMAKE_MAJOR_VERSION} STREQUAL "3")
-  # CMake 3.1 introduces if() policies on dereferencing variables in quotes
-  cmake_policy(SET CMP0054 NEW)
-endif()
+cmake_policy(SET CMP0002 NEW)
+cmake_policy(SET CMP0054 NEW)
+cmake_policy(SET CMP0079 NEW)
+cmake_policy(SET CMP0077 NEW)
 
-cmake_minimum_required(VERSION 3.8.0)
+cmake_minimum_required(VERSION 3.13.0)
 
 #------------------------------------------------------------------------------
 # Create the Top level Project
